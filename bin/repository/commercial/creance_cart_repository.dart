@@ -24,18 +24,19 @@ class CreanceFactureRepository {
     await executor.transaction((ctx) async {
       await ctx.execute(
         "INSERT INTO $tableName (id, cart, client,"
-        "nom_client, telephone, delai_paiement,"
+        "nom_client, telephone, addresse, delai_paiement,"
         "succursale, signature, created)"
-        "VALUES (nextval('creance_factures_id_seq'), @1, @2, @3, @4, @5, @6, @7, @8)",
+        "VALUES (nextval('creance_factures_id_seq'), @1, @2, @3, @4, @5, @6, @7, @8, @9)",
         substitutionValues: {
           '1': data.cart,
           '2': data.client,
           '3': data.nomClient,
           '4': data.telephone,
-          '5': data.delaiPaiement,
-          '6': data.succursale,
-          '7': data.signature,
-          '8': data.created
+          '5': data.addresse,
+          '6': data.delaiPaiement,
+          '7': data.succursale,
+          '8': data.signature,
+          '9': data.created
         }
       );
     });
@@ -44,17 +45,18 @@ class CreanceFactureRepository {
   Future<void> update(CreanceCartModel data) async {
     await executor.query("""UPDATE $tableName
       SET cart = @1, client = @2, nom_client = @3,
-      telephone = @4, delai_paiement = @5, succursale = @6,
-      signature = @7, created = @8 WHERE id = @9""", substitutionValues: {
+      telephone = @4, addresse = @5, delai_paiement = @6, succursale = @7,
+      signature = @8, created = @9 WHERE id = @10""", substitutionValues: {
       '1': data.cart,
       '2': data.client,
       '3': data.nomClient,
       '4': data.telephone,
-      '5': data.delaiPaiement,
-      '6': data.succursale,
-      '7': data.signature,
-      '8': data.created,
-      '9': data.id
+      '5': data.addresse,
+      '6': data.delaiPaiement,
+      '7': data.succursale,
+      '8': data.signature,
+      '9': data.created,
+      '10': data.id
     });
   } 
 

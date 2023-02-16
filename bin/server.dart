@@ -17,6 +17,8 @@ import 'handlers/commercial/history_ravitaillement_handlers.dart';
 import 'handlers/commercial/number_fact_handlers.dart';
 import 'handlers/commercial/produit_model_handlers.dart';
 import 'handlers/commercial/ventes_handlers.dart';
+import 'handlers/finances/caisse_names_handlers.dart';
+import 'handlers/finances/caisses_handlers.dart';
 import 'handlers/mails/mails_handlers.dart';
 import 'handlers/marketing/agenda_handlers.dart';
 import 'handlers/marketing/annuaire_handlers.dart';
@@ -182,6 +184,22 @@ class Service {
             .addMiddleware(handleErrors())
             // .addMiddleware(handleAuth(serverSecretKey))
             .addHandler(PaiementReservationHandlers(repos).router));
+
+    // FINANCE
+     router.mount(
+        '/api/finances/transactions/caisses-name/',
+        Pipeline()
+            .addMiddleware(setJsonHeader())
+            .addMiddleware(handleErrors())
+            // .addMiddleware(handleAuth(serverSecretKey))
+            .addHandler(CaisseNameHandlers(repos).router)); 
+    router.mount(
+        '/api/finances/transactions/caisses/',
+        Pipeline()
+            .addMiddleware(setJsonHeader())
+            .addMiddleware(handleErrors())
+            // .addMiddleware(handleAuth(serverSecretKey))
+            .addHandler(CaissesHandlers(repos).router));
 
     // ARCHIVE
     router.mount(

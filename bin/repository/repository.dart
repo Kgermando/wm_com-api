@@ -11,6 +11,8 @@ import 'commercial/history_ravitraillement_repository.dart';
 import 'commercial/number_facture_repository.dart';
 import 'commercial/produit_model_repository.dart';
 import 'commercial/vente_repository.dart';
+import 'finance/caisse_name_repository.dart';
+import 'finance/caissses_repository.dart';
 import 'mails/mail_repository.dart';
 import 'marketing/agenda_repository.dart';
 import 'marketing/annuaire_repository.dart';
@@ -70,6 +72,10 @@ class Repository {
   late ReservationRepository reservationRepository;
   late PaiementReservationRepository paiementReservationRepository;
 
+  // Finance
+  late CaisseNameRepository caisseNames; 
+  late CaissesRepository caisses;
+
   Repository(this.executor) { 
 
     // NOTIFICATION
@@ -113,8 +119,12 @@ class Repository {
 
     updateVersion = UpdateVersionRepository(executor, 'update_versions');
 
-    // Suivi & Controlle
+    // Reservations
     reservationRepository = ReservationRepository(executor, 'reservations');
     paiementReservationRepository = PaiementReservationRepository(executor, 'paiement_reservations'); 
+
+    // FINANCES 
+    caisseNames = CaisseNameRepository(executor, 'caisse_names'); 
+    caisses = CaissesRepository(executor, 'caisses'); 
   }
 }
