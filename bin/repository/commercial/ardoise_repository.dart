@@ -24,7 +24,7 @@ class ArdoiseRepository {
       await ctx.execute(
           "INSERT INTO $tableName (id, table, table_json, statut,"  
           "succursale, signature, created)"
-          "VALUES (nextval('ardoises_id_seq'), @1, @2, @3, @4, @5)",
+          "VALUES (nextval('ardoises_id_seq'), @1, @2, @3, @4, @5, @6)",
           substitutionValues: {
             '1': data.table,
             '2': data.tableJson,
