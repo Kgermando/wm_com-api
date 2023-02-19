@@ -33,8 +33,8 @@ class ArdoiseHandlers {
     router.post('/insert-new-ardoise', (Request request) async {
       var input = jsonDecode(await request.readAsString());
       ArdoiseModel data = ArdoiseModel(
-        table: input['table'],
-        tableJson: input['tableJson'],
+        ardoise: input['ardoise'],
+        ardoiseJson: input['ardoiseJson'],
         statut: input['statut'],
         succursale: input['succursale'],
         signature: input['signature'],
@@ -54,11 +54,11 @@ class ArdoiseHandlers {
       final editH = ArdoiseModel.fromJson(input);
       ArdoiseModel? data = await repos.ardoises.getFromId(editH.id!);
 
-      if (input['table'] != null) {
-        data.table = input['table'];
+      if (input['ardoise'] != null) {
+        data.ardoise = input['ardoise'];
       }
-      if (input['tableJson'] != null) {
-        data.tableJson = input['tableJson'];
+      if (input['ardoiseJson'] != null) {
+        data.ardoiseJson = input['ardoiseJson'];
       }
       if (input['statut'] != null) {
         data.statut = input['statut'];

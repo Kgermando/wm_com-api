@@ -1,7 +1,7 @@
 class ArdoiseModel {
   late int? id;
-  late String table;
-  late String tableJson;
+  late String ardoise;
+  late String ardoiseJson;
   late String statut;
   late String succursale;
   late String signature; // Celui qui fait le document
@@ -9,8 +9,8 @@ class ArdoiseModel {
 
   ArdoiseModel(
       {this.id,
-      required this.table,
-      required this.tableJson,
+      required this.ardoise,
+      required this.ardoiseJson,
       required this.statut,
       required this.succursale,
       required this.signature,
@@ -19,8 +19,8 @@ class ArdoiseModel {
   factory ArdoiseModel.fromSQL(List<dynamic> row) {
     return ArdoiseModel(
         id: row[0],
-        table: row[1],
-        tableJson: row[2],
+        ardoise: row[1],
+        ardoiseJson: row[2],
         statut: row[3],
         succursale: row[4],
         signature: row[5],
@@ -30,8 +30,8 @@ class ArdoiseModel {
   factory ArdoiseModel.fromJson(Map<String, dynamic> json) {
     return ArdoiseModel(
         id: json['id'],
-        table: json['table'],
-        tableJson: json['tableJson'],
+        ardoise: json['ardoise'],
+        ardoiseJson: json['ardoiseJson'],
         statut: json['statut'],
         succursale: json['succursale'],
         signature: json['signature'],
@@ -41,8 +41,8 @@ class ArdoiseModel {
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-      'table': table,
-      'tableJson': tableJson,
+      'ardoise': ardoise,
+      'ardoiseJson': ardoiseJson,
       'statut': statut,
       'succursale': succursale,
       'signature': signature,
