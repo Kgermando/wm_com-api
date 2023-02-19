@@ -3,6 +3,8 @@ import 'package:postgres/postgres.dart';
 import 'archives/archive_folder_repository.dart';
 import 'archives/archive_repository.dart';
 import 'commercial/achats_repository.dart';
+import 'commercial/ardoise_repository.dart';
+import 'commercial/bon_consommation_repository.dart';
 import 'commercial/cart_repository.dart';
 import 'commercial/creance_cart_repository.dart';
 import 'commercial/facture_cart_repository.dart';
@@ -49,6 +51,8 @@ class Repository {
   late VenteRepository ventes;
   late GainRepository gains;
   late HistoryRavitaillementRepository historyRavitaillements;
+  late ArdoiseRepository ardoises;
+  late BonConsommationRepository bonConsommations;
 
   // MArketing
   late AgendaRepository agendas;
@@ -103,7 +107,9 @@ class Repository {
     ventes = VenteRepository(executor, 'ventes');
     gains = GainRepository(executor, 'gains'); 
     historyRavitaillements =
-        HistoryRavitaillementRepository(executor, 'history_ravitaillements'); 
+        HistoryRavitaillementRepository(executor, 'history_ravitaillements');
+    ardoises = ArdoiseRepository(executor, 'ardoises');
+    bonConsommations = BonConsommationRepository(executor, 'bon_consommations'); 
 
     // MARKETING
     agendas = AgendaRepository(executor, 'agendas');

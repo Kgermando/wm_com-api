@@ -9,6 +9,8 @@ import 'handlers/archives/archive_handlers.dart';
 import 'handlers/auth/auth_handlers.dart';
 import 'handlers/auth/user_handlers.dart';
 import 'handlers/commercial/achats_handlers.dart';
+import 'handlers/commercial/ardoise_handlers.dart';
+import 'handlers/commercial/bon_sonsommation_handlers.dart';
 import 'handlers/commercial/cart_handlers.dart';
 import 'handlers/commercial/creance_facture_handlers.dart';
 import 'handlers/commercial/facture_handlers.dart';
@@ -152,6 +154,20 @@ class Service {
             .addMiddleware(handleErrors())
             // .addMiddleware(handleAuth(serverSecretKey))
             .addHandler(NumberFactHandlers(repos).router));
+    router.mount(
+        '/api/ardoises/',
+        Pipeline()
+            .addMiddleware(setJsonHeader())
+            .addMiddleware(handleErrors())
+            // .addMiddleware(handleAuth(serverSecretKey))
+            .addHandler(ArdoiseHandlers(repos).router));
+    router.mount(
+        '/api/bon-consommations/',
+        Pipeline()
+            .addMiddleware(setJsonHeader())
+            .addMiddleware(handleErrors())
+            // .addMiddleware(handleAuth(serverSecretKey))
+            .addHandler(BonCOnsommationHandlers(repos).router));
 
     // MARKETING
     router.mount(
