@@ -14,7 +14,6 @@ class ArdoiseHandlers {
   Router get router {
     final router = Router();
 
-
     router.get('/', (Request request) async {
       List<ArdoiseModel> data = await repos.ardoises.getAllData();
       return Response.ok(jsonEncode(data));
@@ -33,14 +32,14 @@ class ArdoiseHandlers {
 
     router.post('/insert-new-ardoise', (Request request) async {
       var input = jsonDecode(await request.readAsString());
-
       ArdoiseModel data = ArdoiseModel(
-        ardoise: input['ardoise'],
-        ardoiseId: input['ardoiseId'], 
+        table: input['table'],
+        tableJson: input['tableJson'],
+        statut: input['statut'],
         succursale: input['succursale'],
         signature: input['signature'],
         created: DateTime.parse(input['created'])
-      );
+      ); 
       try {
         await repos.ardoises.insertData(data);
       } catch (e) {
@@ -51,17 +50,19 @@ class ArdoiseHandlers {
     });
 
     router.put('/update-ardoise/', (Request request) async {
-       dynamic input = jsonDecode(await request.readAsString());
+      dynamic input = jsonDecode(await request.readAsString());
       final editH = ArdoiseModel.fromJson(input);
-      ArdoiseModel? data =
-          await repos.ardoises.getFromId(editH.id!); 
+      ArdoiseModel? data = await repos.ardoises.getFromId(editH.id!);
 
-      if (input['ardoise'] != null) {
-        data.ardoise = input['ardoise'];
+      if (input['table'] != null) {
+        data.table = input['table'];
       }
-      if (input['ardoiseId'] != null) {
-        data.ardoiseId = input['ardoiseId'];
-      } 
+      if (input['tableJson'] != null) {
+        data.tableJson = input['tableJson'];
+      }
+      if (input['statut'] != null) {
+        data.statut = input['statut'];
+      }
       if (input['succursale'] != null) {
         data.succursale = input['succursale'];
       }
