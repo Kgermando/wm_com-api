@@ -262,7 +262,7 @@ class Service {
 }
 
 void main(List<String> args) async {
-  final ip = "app";
+  final ip = "appcom";
   final port = 8081;
 
   PostgreSQLConnection connection = await ConnexionDatabase().connection();
