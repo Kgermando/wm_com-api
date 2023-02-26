@@ -4,7 +4,6 @@ import 'archives/archive_folder_repository.dart';
 import 'archives/archive_repository.dart';
 import 'commercial/achats_repository.dart';
 import 'commercial/ardoise_repository.dart';
-import 'commercial/bon_consommation_repository.dart';
 import 'commercial/cart_repository.dart';
 import 'commercial/creance_cart_repository.dart';
 import 'commercial/facture_cart_repository.dart';
@@ -52,7 +51,6 @@ class Repository {
   late GainRepository gains;
   late HistoryRavitaillementRepository historyRavitaillements;
   late ArdoiseRepository ardoises;
-  late BonConsommationRepository bonConsommations;
 
   // MArketing
   late AgendaRepository agendas;
@@ -109,7 +107,6 @@ class Repository {
     historyRavitaillements =
         HistoryRavitaillementRepository(executor, 'history_ravitaillements');
     ardoises = ArdoiseRepository(executor, 'ardoises');
-    bonConsommations = BonConsommationRepository(executor, 'bon_consommations'); 
 
     // MARKETING
     agendas = AgendaRepository(executor, 'agendas');

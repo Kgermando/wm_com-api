@@ -161,13 +161,6 @@ class Service {
             .addMiddleware(handleErrors())
             // .addMiddleware(handleAuth(serverSecretKey))
             .addHandler(ArdoiseHandlers(repos).router));
-    router.mount(
-        '/api/bon-consommations/',
-        Pipeline()
-            .addMiddleware(setJsonHeader())
-            .addMiddleware(handleErrors())
-            // .addMiddleware(handleAuth(serverSecretKey))
-            .addHandler(BonCOnsommationHandlers(repos).router));
 
     // MARKETING
     router.mount(
