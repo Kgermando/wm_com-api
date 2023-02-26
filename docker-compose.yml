@@ -25,9 +25,9 @@ services:
       - POSTGRES_PASSWORD=kataku
 
     ports:
-      - 5432:5433
+      - 5433:5432
     expose:
-      - 5432 
+      - 5433
     networks:
       - app-network
 
