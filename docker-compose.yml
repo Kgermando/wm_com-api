@@ -1,11 +1,11 @@
 version: '3.5'
 
 services:
-  app:
+  appcom:
     build: 
       context: .
       dockerfile: Dockerfile
-    container_name: app
+    container_name: appcom
     depends_on:
       - dbcom
     ports:
@@ -16,7 +16,7 @@ services:
   dbcom:
     restart: always
     image: postgres:latest
-    container_name: db
+    container_name: dbcom
     command: ["-c", "shared_buffers=256MB", "-c", "max_connections=500"]
     volumes:
       - postgres:/var/lib/postgresql/data
@@ -31,9 +31,9 @@ services:
     networks:
       - app-network
 
-  adminer:
+  adminercom:
     image: adminer
-    container_name: adminer
+    container_name: adminercom
     restart: always
     ports:
       - 8080:8080
