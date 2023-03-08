@@ -25,8 +25,9 @@ class ReservationRepository {
       await ctx.query(
           "INSERT INTO $tableName (id, client, telephone, email,"
           "adresse, nbre_personne, duree_event, created_day, background,"
-          "event_name, signature, created)"
-          "VALUES (nextval('reservations_id_seq'), @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11)",
+          "event_name, signature, created, montant)"
+          "VALUES (nextval('reservations_id_seq'), @1, @2, @3,"
+          "@4, @5, @6, @7, @8, @9, @10, @11, @12)",
           substitutionValues: {
             '1': data.client,
             '2': data.telephone,
@@ -38,7 +39,8 @@ class ReservationRepository {
             '8': data.background,
             '9': data.eventName,
             '10': data.signature,
-            '11': data.created
+            '11': data.created,
+            '12': data.montant
           });
     });
   }
@@ -47,7 +49,8 @@ class ReservationRepository {
     await executor.query("""UPDATE $tableName
       SET client = @1, telephone = @2, email = @3, adresse = @4, 
         nbre_personne = @5, duree_event = @6, created_day = @7, background = @8, 
-        event_name = @9, signature = @10, created = @11 WHERE id = @12""",
+        event_name = @9, signature = @10, created = @11, 
+        montant = @12 WHERE id = @13""",
         substitutionValues: {
           '1': data.client,
           '2': data.telephone,
@@ -60,7 +63,8 @@ class ReservationRepository {
           '9': data.eventName,
           '10': data.signature,
           '11': data.created,
-          '12': data.id
+          '12': data.montant,
+          '13': data.id
         });
   }
 
@@ -92,6 +96,7 @@ class ReservationRepository {
       eventName: data[0][9],
       signature: data[0][10],
       created: data[0][11],
+      montant: data[0][11],
     );
   }
 }

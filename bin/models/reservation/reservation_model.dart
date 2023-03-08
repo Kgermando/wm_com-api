@@ -1,6 +1,6 @@
 class ReservationModel {
   late int? id;
-  late String client; 
+  late String client;
   late String telephone;
   late String email;
   late String adresse;
@@ -11,37 +11,38 @@ class ReservationModel {
   late String eventName; // type de manifestation
   late String signature; // celui qui fait le document
   late DateTime created;
+  late String montant;
 
-  ReservationModel({
-    this.id,
-    required this.client,
-    required this.telephone, 
-    required this.email, 
-    required this.adresse,
-    required this.nbrePersonne, 
-    required this.dureeEvent,
-    required this.createdDay,
-    required this.background,
-    required this.eventName, 
-    required this.signature,
-    required this.created
-  });
+  ReservationModel(
+      {this.id,
+      required this.client,
+      required this.telephone,
+      required this.email,
+      required this.adresse,
+      required this.nbrePersonne,
+      required this.dureeEvent,
+      required this.createdDay,
+      required this.background,
+      required this.eventName,
+      required this.signature,
+      required this.created,
+      required this.montant});
 
   factory ReservationModel.fromSQL(List<dynamic> row) {
     return ReservationModel(
-      id: row[0],
-      client: row[1],
-      telephone: row[2],
-      email: row[3],
-      adresse: row[4],
-      nbrePersonne: row[5],
-      dureeEvent: row[6],
-      createdDay: row[7],
-      background: row[8],
-      eventName: row[9],
-      signature: row[10],
-      created: row[11]
-    );
+        id: row[0],
+        client: row[1],
+        telephone: row[2],
+        email: row[3],
+        adresse: row[4],
+        nbrePersonne: row[5],
+        dureeEvent: row[6],
+        createdDay: row[7],
+        background: row[8],
+        eventName: row[9],
+        signature: row[10],
+        created: row[11],
+        montant: row[12]);
   }
 
   factory ReservationModel.fromJson(Map<String, dynamic> json) {
@@ -55,9 +56,10 @@ class ReservationModel {
       dureeEvent: json["dureeEvent"],
       createdDay: DateTime.parse(json['createdDay']),
       background: json["background"],
-      eventName: json["eventName"], 
+      eventName: json["eventName"],
       signature: json['signature'],
       created: DateTime.parse(json['created']),
+      montant: json['montant'],
     );
   }
 
@@ -74,7 +76,8 @@ class ReservationModel {
       'background': background,
       'eventName': eventName,
       'signature': signature,
-      'created': created.toIso8601String()
+      'created': created.toIso8601String(),
+      'montant': montant
     };
   }
 }

@@ -32,7 +32,7 @@ class ReservationHandlers {
 
     router.post('/insert-new-reservation', (Request request) async {
       var input = jsonDecode(await request.readAsString());
-      ReservationModel agent = ReservationModel(
+      ReservationModel dataItem = ReservationModel(
           client: input['client'],
           telephone: input['telephone'],
           email: input['email'],
@@ -43,15 +43,17 @@ class ReservationHandlers {
           background: input['background'],
           eventName: input['eventName'],
           signature: input['signature'],
-          created: DateTime.parse(input['created']));
+          created: DateTime.parse(input['created']),
+        montant: input['montant']
+      );
 
       try {
-        await repos.reservationRepository.insertData(agent);
+        await repos.reservationRepository.insertData(dataItem);
       } catch (e) {
         print(e);
         return Response(422);
       }
-      return Response.ok(jsonEncode(agent.toJson()));
+      return Response.ok(jsonEncode(dataItem.toJson()));
     });
 
     router.put('/update-reservation/', (Request request) async {
@@ -91,6 +93,9 @@ class ReservationHandlers {
       }
       if (input['created'] != null) {
         dataItem.created = DateTime.parse(input['created']);
+      }
+      if (input['montant'] != null) {
+        dataItem.montant = input['montant'];
       }
 
       repos.reservationRepository.update(dataItem);
