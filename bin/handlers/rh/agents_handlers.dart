@@ -63,9 +63,9 @@ class AgentsHandlers {
           photo: input['photo'],
           salaire: input['salaire'],
           signature: input['signature'],
-          created: DateTime.parse(input['created'])
+          created: DateTime.parse(input['created']),
+          isDelete: input['isDelete']
       );
-
       try {
         await repos.agents.insertData(agent);
       } catch (e) {
@@ -155,6 +155,9 @@ class AgentsHandlers {
       }
       if (input['created'] != null) {
         selectUser.created = DateTime.parse(input['created']);
+      }
+      if (input['isDelete'] != null) {
+        selectUser.isDelete = input['isDelete'];
       }
 
       repos.agents.update(selectUser);

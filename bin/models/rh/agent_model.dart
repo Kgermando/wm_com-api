@@ -24,7 +24,8 @@ class AgentModel {
   late String? photo;
   late String salaire;
   late String signature; // celui qui fait le document
-  late DateTime created; 
+  late DateTime created;
+  late String isDelete;
 
   AgentModel(
       {this.id,
@@ -53,6 +54,7 @@ class AgentModel {
       required this.salaire,
       required this.signature,
       required this.created,
+      required this.isDelete,
  
   });
 
@@ -83,7 +85,8 @@ class AgentModel {
       photo: row[22],
       salaire: row[23],
       signature: row[24],
-      created: row[25]
+      created: row[25],
+      isDelete: row[26]
     );
   }
 
@@ -114,7 +117,8 @@ class AgentModel {
       photo: json["photo"],
       salaire: json["salaire"],
       signature: json['signature'],
-      created: DateTime.parse(json['created']), 
+      created: DateTime.parse(json['created']),
+      isDelete: json['isDelete']
     );
   }
 
@@ -145,7 +149,8 @@ class AgentModel {
       'photo': photo,
       'salaire': salaire,
       'signature': signature,
-      'created': created.toIso8601String(), 
+      'created': created.toIso8601String(),
+      'isDelete': isDelete
     };
   }
 }

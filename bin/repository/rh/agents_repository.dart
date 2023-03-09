@@ -27,9 +27,9 @@ class AgentsRepository {
           "adresse, sexe, role, matricule, date_naissance,"
           "lieu_naissance, nationalite, type_contrat, departement, services_affectation,"
           "date_debut_contrat, date_fin_contrat, fonction_occupe, detail_personnel,"
-          "statut_agent, created_at, photo, salaire, signature, created)"
+          "statut_agent, created_at, photo, salaire, signature, created, is_delete)"
           "VALUES (nextval('agents_id_seq'), @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12,"
-          "@13, @14, @15, @16, @17, @18, @19, @20, @21, @22, @23, @24, @25)",
+          "@13, @14, @15, @16, @17, @18, @19, @20, @21, @22, @23, @24, @25, @26)",
           substitutionValues: {
             '1': agentModel.nom,
             '2': agentModel.postNom,
@@ -55,7 +55,8 @@ class AgentsRepository {
             '22': agentModel.photo,
             '23': agentModel.salaire,
             '24': agentModel.signature,
-            '25': agentModel.created
+            '25': agentModel.created,
+            '26': agentModel.isDelete
           });
     });
   }
@@ -69,7 +70,7 @@ class AgentsRepository {
         departement = @14, services_affectation = @15, date_debut_contrat = @16,
         date_fin_contrat = @17, fonction_occupe = @18, detail_personnel = @19,
         statut_agent = @20, created_at = @21, photo = @22,
-        salaire = @23, signature = @24, created = @25 WHERE id = @26""",
+        salaire = @23, signature = @24, created = @25, is_delete = @26 WHERE id = @27""",
 
         substitutionValues: {
           '1': agentModel.nom,
@@ -97,7 +98,8 @@ class AgentsRepository {
           '23': agentModel.salaire,
           '24': agentModel.signature,
           '25': agentModel.created,
-          '26': agentModel.id 
+          '26': agentModel.isDelete,
+          '27': agentModel.id 
         });
   }
 
@@ -141,7 +143,8 @@ class AgentsRepository {
         photo: data[0][22],
         salaire: data[0][23],
         signature: data[0][24],
-        created: data[0][25]  
+        created: data[0][25],
+        isDelete: data[0][26]  
       );
   }
 
